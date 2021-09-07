@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.example.notetaking.ui.fragments.NotesFragment"
-        android:label="NotesFragment">
+        android:label="Your notes">
         <action
             android:id="@+id/action_notesFragment_to_addEditNoteFragment"
             app:destination="@id/addEditNoteFragment" />
@@ -16,5 +16,11 @@
     <fragment
         android:id="@+id/addEditNoteFragment"
         android:name="com.example.notetaking.ui.fragments.AddEditNoteFragment"
-        android:label="AddEditNoteFragment" />
+        android:label="Edit your note" >
+        <argument
+            android:name="note"
+            app:argType="com.example.notetaking.model.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
