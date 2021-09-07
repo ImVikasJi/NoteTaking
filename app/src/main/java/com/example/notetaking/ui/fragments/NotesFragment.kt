@@ -30,11 +30,15 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
         setupRecyclerView()
 
-//        noteViewModel.notes.observe(viewLifecycleOwner, Observer {
-//            noteListAdapter.submitList(it)
-//        })
+        noteViewModel.notes.observe(viewLifecycleOwner, Observer {
+            noteListAdapter.submitList(it)
+        })
 
-        fakeNotes()
+        binding.fab.setOnClickListener {
+            val action = NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/notesFragment">
 
@@ -16,11 +17,11 @@
     <fragment
         android:id="@+id/addEditNoteFragment"
         android:name="com.example.notetaking.ui.fragments.AddEditNoteFragment"
-        android:label="Edit your note" >
+        android:label="Edit your note">
         <argument
             android:name="note"
+            android:defaultValue="@null"
             app:argType="com.example.notetaking.model.Note"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
 </navigation>
