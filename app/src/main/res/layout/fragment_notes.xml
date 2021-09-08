@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:src="@drawable/ic_add"
-            app:backgroundTint="@color/black"
+            app:backgroundTint="@color/purple_500"
             app:layout_constraintBottom_toBottomOf="@+id/rvNotes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notetaking.R
 import com.example.notetaking.databinding.FragmentAddNotesBinding
 import com.example.notetaking.model.Note
@@ -44,10 +46,6 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_notes) {
 
         binding.btnSave.setOnClickListener {
             saveNote()
-//            val intent = Intent(context, NotesFragment::class.java).apply {
-//                putExtra("BACK","")
-//            }
-//            startActivity(intent)
             findNavController().popBackStack()
         }
     }

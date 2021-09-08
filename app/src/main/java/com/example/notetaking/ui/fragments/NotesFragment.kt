@@ -7,12 +7,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notetaking.R
 import com.example.notetaking.adapter.NoteAdapter
 import com.example.notetaking.databinding.FragmentNotesBinding
 import com.example.notetaking.model.Note
 import com.example.notetaking.model.NoteViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,20 +62,34 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
             val action = NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(it)
             findNavController().navigate(action)
         }
+
+        swipeToDelete()
     }
 
-    private fun fakeNotes(){
-        val fakeListNotes = listOf(
-            Note("A","Note 1",1),
-            Note("B","Note 2",2),
-            Note("C","Note 3",3),
-            Note("D","Note 4",4),
-            Note("E","Note 5",4),
-            Note("E","Note 5",4),
-            Note("E","Note 5",4),
-            Note("E","Note 5",4),
-            Note("E","Note 5",4),
-        )
-        noteListAdapter.submitList(fakeListNotes)
+    private fun swipeToDelete(){
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val itemPosition = viewHolder.adapterPosition
+                val currentNote = noteListAdapter.currentList[itemPosition]
+
+                noteViewModel.deleteNote(currentNote)
+                Snackbar.make(requireView(),"Note Deleted Successfully",Snackbar.LENGTH_LONG)
+                    .setAction("Undo"){
+                        noteViewModel.insertNote(currentNote)
+                    }.show()
+            }
+        }
+        ItemTouchHelper(itemTouchCallback).attachToRecyclerView(binding.rvNotes)
     }
 }
