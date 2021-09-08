@@ -1,11 +1,10 @@
-
 # Note Taking
 
 
 
 ## Demo
 
-Insert gif or link to demo
+https://user-images.githubusercontent.com/53864309/132528193-6b594c5d-d6bc-40f9-9eb1-5e25b2eb34ea.mp4
 
 
   
